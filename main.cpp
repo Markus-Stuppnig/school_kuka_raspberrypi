@@ -8,6 +8,10 @@
 #define PORT 8080
 #define BUFFER_SIZE 1024
 
+void send_coordinates(int &x, int &y, int &index) {
+
+}
+
 int main() {
     int server_fd, client_fd;
     struct sockaddr_in address;
@@ -49,12 +53,19 @@ int main() {
             break;
         }
     }
-    int i = 0;
+    // int i = 0;
     while (true) {
-        std::cout << i++ << std::endl;
+        // std::cout << i++ << std::endl;
         ssize_t bytes_read = read(client_fd, buffer, BUFFER_SIZE);
         if (bytes_read > 0) {
             std::cout << "Received: " << buffer << std::endl;
+            int x, y, index;
+            if (sscanf(buffer, "%d,%d,%d", &x, &y, &index) == 3) {
+                std::cout << "Parsed values - x: " << x << ", y: " << y << ", index: " << index << std::endl;
+                send_coordinates(x, y, index);
+            } else {
+                std::cout << "Invalid format received" << std::endl;
+            }
             memset(buffer, 0, BUFFER_SIZE);
         } else if (bytes_read == 0) {
             std::cout << "Client disconnected." << std::endl;

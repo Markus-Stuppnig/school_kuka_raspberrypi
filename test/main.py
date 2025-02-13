@@ -14,7 +14,7 @@ try:
 
     sleep(5)
     # Send message
-    client_socket.sendall(b"hello")
+    client_socket.sendall(b"17,68,1")
     print("Message sent")
 finally:
     client_socket.close()
