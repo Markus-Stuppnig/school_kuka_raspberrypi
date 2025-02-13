@@ -5,8 +5,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#include "EasyCAT.h"
+#define CUSTOM
+
 #include "kuka_find_cubes.h"
+#include "EasyCAT.h"
 
 #define PORT 8080
 #define BUFFER_SIZE 1024
