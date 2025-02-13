@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
+#include <iostream>
 
 #include "EasyCAT.h"
 
@@ -107,19 +108,24 @@ bool EasyCAT::Init()
 
   char device[255];
 
+  std::cout << "SCS = " << SCS_ << std::endl;
+
   if (SCS_ == 0)
   {
     sprintf(device, "/dev/spidev0.0");
     printf("SCS = CE0\n");
+    std::cout << "SCS Pin = CE0" << std::endl;
   }
   else if (SCS_ == 1)
   {
     sprintf(device, "/dev/spidev0.1");
     printf("SCS = CE1\n");
+    std::cout << "SCS Pin = CE1" << std::endl;
   }
   else                                                  // wrong CS pin
   {                                                     // exit
     printf("only 0 or 1 allowed for SCS pin\n");
+    std::cout << "only 0 or 1 allowed for SCS pin" << std::endl;
     return false;
   }
 

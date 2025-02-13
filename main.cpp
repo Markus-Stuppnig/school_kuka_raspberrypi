@@ -28,11 +28,17 @@ void initEasyCat() {
 }
 
 void mainEasyCat() {
-    std::cout << "Running Main Task" << std::endl;
+    #ifdef DEBUG
+        std::cout << "Running Main Task" << std::endl;
+    #endif
     myEasyCAT.MainTask();
 }
 
 int main() {
+    #ifdef DEBUG
+        std::cout << "Debug mode is ON" << std::endl;
+    #endif
+
     initEasyCat();
 
     int server_fd, client_fd;
@@ -67,7 +73,6 @@ int main() {
     std::cout << "Server listening on port " << PORT << "..." << std::endl;
 
     while (true) {
-        std::cout << "Waiting for client..." << std::endl;
         // EasyCat
         mainEasyCat();
 
