@@ -5,14 +5,37 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
+#include "EasyCAT.h"
+#include "kuka_find_cubes.h"
+
 #define PORT 8080
 #define BUFFER_SIZE 1024
 
-void send_coordinates(int &x, int &y, int &index) {
+EasyCAT myEasyCAT;
 
+void send_coordinates(int &x, int &y, int &index) {
+    myEasyCAT.BufferOut.Cust.x = x;
+    myEasyCAT.BufferIn.Cust.x = x;
+    myEasyCAT.BufferIn.Cust.y = y;
+    myEasyCAT.BufferIn.Cust.index = index;
+}
+
+void initEasyCat() {
+    if (myEasyCAT.Init() == true) {
+        std::cout << "EasyCAT Initialization Successful" << std::endl;
+    } else {
+        std::cout << "EasyCAT Initialization Failed" << std::endl;
+    }
+}
+
+void mainEasyCat() {
+    std::cout << "Running Main Task" << std::endl;
+    myEasyCAT.MainTask();
 }
 
 int main() {
+    initEasyCat();
+
     int server_fd, client_fd;
     struct sockaddr_in address;
     socklen_t addrlen = sizeof(address);
@@ -45,6 +68,10 @@ int main() {
     std::cout << "Server listening on port " << PORT << "..." << std::endl;
 
     while (true) {
+
+        // EasyCat
+        mainEasyCat();
+
         // Accept connection (non-blocking)
         client_fd = accept(server_fd, (struct sockaddr *)&address, &addrlen);
         if (client_fd >= 0) {
@@ -55,7 +82,11 @@ int main() {
     }
     // int i = 0;
     while (true) {
-        // std::cout << i++ << std::endl;
+
+        // EasyCat
+        mainEasyCat();
+
+        // Read data from client
         ssize_t bytes_read = read(client_fd, buffer, BUFFER_SIZE);
         if (bytes_read > 0) {
             std::cout << "Received: " << buffer << std::endl;
