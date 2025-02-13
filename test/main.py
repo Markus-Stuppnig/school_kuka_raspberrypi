@@ -1,7 +1,7 @@
 import socket
 from time import sleep
 
-HOST = "127.0.0.1"  # Server address
+HOST = "172.20.10.13"  # Server address
 PORT = 8080          # Server port
 
 # Create socket

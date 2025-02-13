@@ -6,8 +6,6 @@
 #include <netinet/in.h>
 
 #define CUSTOM
-
-#include "kuka_find_cubes.h"
 #include "EasyCAT.h"
 
 #define PORT 8080
@@ -16,10 +14,9 @@
 EasyCAT myEasyCAT;
 
 void send_coordinates(int &x, int &y, int &index) {
-    // myEasyCAT.BufferOut.Cust.x = x;
-    // myEasyCAT.BufferIn.Cust.x = x;
-    // myEasyCAT.BufferIn.Cust.y = y;
-    // myEasyCAT.BufferIn.Cust.index = index;
+    myEasyCAT.BufferIn.Cust.x = x;
+    myEasyCAT.BufferIn.Cust.y = y;
+    myEasyCAT.BufferIn.Cust.index = index;
 }
 
 void initEasyCat() {
@@ -70,7 +67,7 @@ int main() {
     std::cout << "Server listening on port " << PORT << "..." << std::endl;
 
     while (true) {
-
+        std::cout << "Waiting for client..." << std::endl;
         // EasyCat
         mainEasyCat();
 
