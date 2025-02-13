@@ -14,10 +14,10 @@
 EasyCAT myEasyCAT;
 
 void send_coordinates(int &x, int &y, int &index) {
-    myEasyCAT.BufferOut.Cust.x = x;
-    myEasyCAT.BufferIn.Cust.x = x;
-    myEasyCAT.BufferIn.Cust.y = y;
-    myEasyCAT.BufferIn.Cust.index = index;
+    // myEasyCAT.BufferOut.Cust.x = x;
+    // myEasyCAT.BufferIn.Cust.x = x;
+    // myEasyCAT.BufferIn.Cust.y = y;
+    // myEasyCAT.BufferIn.Cust.index = index;
 }
 
 void initEasyCat() {
