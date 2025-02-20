@@ -17,9 +17,9 @@ int i = 0;
 
 void send_coordinates(uint8_t x, uint8_t y, uint8_t index) {
     std::cout << "Sending coordinates: x=" << x << ", y=" << y << ", index=" << index << std::endl;
-    myEasyCAT.BufferIn.Cust.x = 0x00001;
-    myEasyCAT.BufferIn.Cust.y = 0x2;
-    myEasyCAT.BufferIn.Cust.index = 0x3;
+    myEasyCAT.BufferIn.Cust.x = x;
+    myEasyCAT.BufferIn.Cust.y = y;
+    myEasyCAT.BufferIn.Cust.index = index;
     std::cout << "Coordinates sent: x=" << x << ", y=" << y << ", index=" << index << std::endl;
 }
 
