@@ -46,7 +46,7 @@ void parse_and_send(const char* buffer) {
         uint8_t y8 = static_cast<uint8_t>(y);
         uint8_t index8 = static_cast<uint8_t>(index);
 
-        std::cout << "Parsed values - x: " << static_cast<int>(x8)
+        std::cout << "Parsed values - x: " << x8
                   << ", y: " << static_cast<int>(y8)
                   << ", index: " << static_cast<int>(index8) << std::endl;
 
