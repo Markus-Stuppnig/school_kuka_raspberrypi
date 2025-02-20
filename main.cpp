@@ -33,10 +33,10 @@ void initEasyCat() {
 }
 
 void mainEasyCat() {
-    // #ifdef DEBUG
-    //     std::cout << "Running Main Task: " << i << std::endl;
-    // #endif
-    // myEasyCAT.MainTask();
+    #ifdef DEBUG
+        std::cout << "Running Main Task: " << i << std::endl;
+    #endif
+    myEasyCAT.MainTask();
 }
 
 int main() {
