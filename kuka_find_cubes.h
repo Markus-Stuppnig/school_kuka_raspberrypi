@@ -10,10 +10,10 @@
 //-------------------------------------------------------------------//
 
 
-#define CUST_BYTE_NUM_OUT	1
-#define CUST_BYTE_NUM_IN	8
-#define TOT_BYTE_NUM_ROUND_OUT	4
-#define TOT_BYTE_NUM_ROUND_IN	8
+#define CUST_BYTE_NUM_OUT	0
+#define CUST_BYTE_NUM_IN	3
+#define TOT_BYTE_NUM_ROUND_OUT	0
+#define TOT_BYTE_NUM_ROUND_IN	4
 
 
 typedef union												//---- output buffer ----

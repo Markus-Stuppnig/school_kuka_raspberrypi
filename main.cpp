@@ -5,7 +5,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#define CUSTOM
 #include "EasyCAT.h"
 
 #define PORT 8080
