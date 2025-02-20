@@ -115,6 +115,7 @@ int main() {
 
         // EasyCat
         mainEasyCat();
+        send_coordinates();
 
         // Read data from client
         ssize_t bytes_read = read(client_fd, buffer, BUFFER_SIZE);
