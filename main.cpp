@@ -13,6 +13,8 @@
 
 EasyCAT myEasyCAT;
 
+int i = 0;
+
 void send_coordinates(int &x, int &y, int &index) {
     myEasyCAT.BufferIn.Cust.x = x;
     myEasyCAT.BufferIn.Cust.y = y;
@@ -29,7 +31,7 @@ void initEasyCat() {
 
 void mainEasyCat() {
     #ifdef DEBUG
-        std::cout << "Running Main Task" << std::endl;
+        std::cout << "Running Main Task: " << i << std::endl;
     #endif
     myEasyCAT.MainTask();
 }
