@@ -26,7 +26,6 @@ void send_coordinates(int x, int y, int index) {
 void initEasyCat() {
     if (myEasyCAT.Init() == true) {
         std::cout << "EasyCAT Initialization Successful" << std::endl;
-        send_coordinates(1, 2, 3);
     } else {
         std::cout << "EasyCAT Initialization Failed" << std::endl;
     }
@@ -94,6 +93,7 @@ int main() {
 
         // EasyCat
         mainEasyCat();
+        send_coordinates(1, 2, 3);
 
         // Read data from client
         ssize_t bytes_read = read(client_fd, buffer, BUFFER_SIZE);
