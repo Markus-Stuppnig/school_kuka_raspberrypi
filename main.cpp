@@ -15,7 +15,7 @@ EasyCAT myEasyCAT;
 
 int i = 0;
 
-void send_coordinates(int &x, int &y, int &index) {
+void send_coordinates(int x, int y, int index) {
     std::cout << "Sending coordinates: x=" << x << ", y=" << y << ", index=" << index << std::endl;
     myEasyCAT.BufferIn.Cust.x = x;
     myEasyCAT.BufferIn.Cust.y = y;
@@ -26,6 +26,7 @@ void send_coordinates(int &x, int &y, int &index) {
 void initEasyCat() {
     if (myEasyCAT.Init() == true) {
         std::cout << "EasyCAT Initialization Successful" << std::endl;
+        send_coordinates(1, 2, 3);
     } else {
         std::cout << "EasyCAT Initialization Failed" << std::endl;
     }
