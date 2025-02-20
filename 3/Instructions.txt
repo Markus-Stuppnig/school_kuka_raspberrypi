@@ -1,0 +1,10 @@
+Compile the project from inside the project directory:
+
+cd EasyCAT_Test
+
+for the Standard example: g++ -o EasyCAT_Test EasyCAT_Test.cpp EasyCAT.cpp
+for the Custom example: g++ -DCUSTOM -o EasyCAT_Test EasyCAT_Test_Custom.cpp EasyCAT.cpp
+
+to run the example:
+
+sudo ./EasyCAT_Test
