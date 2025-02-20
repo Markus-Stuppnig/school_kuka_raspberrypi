@@ -12,19 +12,18 @@
 
 EasyCAT myEasyCAT;
 
-int i = 0;
-
 uint8_t x8 = 0x0000;
 uint8_t y8 = 0x0000;
 uint8_t index8 = 0x0000;
 
 void send_coordinates() {
-    // std::cout << "Sending coordinates: x=" << x8 << ", y=" << y8 << ", index=" << index8 << std::endl;
+    #ifdef DEBUG
+        std::cout << "Running Send Method" << std::endl;
+    #endif
     myEasyCAT.BufferIn.Cust.x = x8;
-    myEasyCAT.BufferIn.Cust.y = 0x0030;
+    myEasyCAT.BufferIn.Cust.y = y8;
     myEasyCAT.BufferIn.Cust.index = index8;
     myEasyCAT.MainTask();
-    // std::cout << "Coordinates sent: x=" << x8 << ", y=" << y8 << ", index=" << index8 << std::endl;
 }
 
 void initEasyCat() {
@@ -35,21 +34,13 @@ void initEasyCat() {
     }
 }
 
-void mainEasyCat() {
-    #ifdef DEBUG
-        std::cout << "Running Main Task: " << i << std::endl;
-    #endif
-    // myEasyCAT.MainTask();
-}
-
 void parse_and_send(const char* buffer) {
     unsigned int x, y, index;  // Use unsigned int for sscanf, as it doesn't directly support uint8_t
 
     if (sscanf(buffer, "%u,%u,%u", &x, &y, &index) == 3 && x <= 255 && y <= 255 && index <= 255) {
         x8 = static_cast<uint8_t>(x);
         y8 = static_cast<uint8_t>(y);
-        // index8 = static_cast<uint8_t>(index);
-        index8++;
+        index8 = static_cast<uint8_t>(index);
 
         std::cout << "Parsed values - x: " << static_cast<int>(x8)
                   << ", y: " << static_cast<int>(y8)
@@ -100,7 +91,6 @@ int main() {
 
     while (true) {
         // EasyCat
-        // mainEasyCat();
         send_coordinates();
 
         // Accept connection (non-blocking)
@@ -115,7 +105,6 @@ int main() {
     while (true) {
 
         // EasyCat
-        // mainEasyCat();
         send_coordinates();
 
         // Read data from client
