@@ -15,7 +15,7 @@ EasyCAT myEasyCAT;
 
 int i = 0;
 
-void send_coordinates(int x, int y, int index) {
+void send_coordinates(uint8_t x, uint8_t y, uint8_t index) {
     std::cout << "Sending coordinates: x=" << x << ", y=" << y << ", index=" << index << std::endl;
     myEasyCAT.BufferIn.Cust.x = x;
     myEasyCAT.BufferIn.Cust.y = y;
