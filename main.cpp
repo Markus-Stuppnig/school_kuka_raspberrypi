@@ -20,11 +20,12 @@ uint8_t y8 = 0;
 uint8_t index8 = 0;
 
 void send_coordinates() {
-    std::cout << "Sending coordinates: x=" << x8 << ", y=" << y8 << ", index=" << index8 << std::endl;
-    myEasyCAT.BufferIn.Cust.x = x8;
-    myEasyCAT.BufferIn.Cust.y = y8;
+    // std::cout << "Sending coordinates: x=" << x8 << ", y=" << y8 << ", index=" << index8 << std::endl;
+    myEasyCAT.BufferIn.Cust.x = 1;
+    myEasyCAT.BufferIn.Cust.y = 0x0001;
     myEasyCAT.BufferIn.Cust.index = index8;
-    std::cout << "Coordinates sent: x=" << x8 << ", y=" << y8 << ", index=" << index8 << std::endl;
+    myEasyCAT.MainTask();
+    // std::cout << "Coordinates sent: x=" << x8 << ", y=" << y8 << ", index=" << index8 << std::endl;
 }
 
 void initEasyCat() {
@@ -39,7 +40,7 @@ void mainEasyCat() {
     #ifdef DEBUG
         std::cout << "Running Main Task: " << i << std::endl;
     #endif
-    myEasyCAT.MainTask();
+    // myEasyCAT.MainTask();
 }
 
 void parse_and_send(const char* buffer) {
@@ -54,7 +55,6 @@ void parse_and_send(const char* buffer) {
                   << ", y: " << static_cast<int>(y8)
                   << ", index: " << static_cast<int>(index8) << std::endl;
 
-        send_coordinates();
     } else {
         std::cout << "Invalid format received" << std::endl;
     }
@@ -114,7 +114,7 @@ int main() {
     while (true) {
 
         // EasyCat
-        mainEasyCat();
+        // mainEasyCat();
         send_coordinates();
 
         // Read data from client
