@@ -38,6 +38,24 @@ void mainEasyCat() {
     myEasyCAT.MainTask();
 }
 
+void parse_and_send(const char* buffer) {
+    unsigned int x, y, index;  // Use unsigned int for sscanf, as it doesn't directly support uint8_t
+
+    if (sscanf(buffer, "%u,%u,%u", &x, &y, &index) == 3 && x <= 255 && y <= 255 && index <= 255) {
+        uint8_t x8 = static_cast<uint8_t>(x);
+        uint8_t y8 = static_cast<uint8_t>(y);
+        uint8_t index8 = static_cast<uint8_t>(index);
+
+        std::cout << "Parsed values - x: " << static_cast<int>(x8)
+                  << ", y: " << static_cast<int>(y8)
+                  << ", index: " << static_cast<int>(index8) << std::endl;
+
+        send_coordinates(x8, y8, index8);
+    } else {
+        std::cout << "Invalid format received" << std::endl;
+    }
+}
+
 int main() {
     #ifdef DEBUG
         std::cout << "Debug mode is ON" << std::endl;
@@ -99,13 +117,7 @@ int main() {
         ssize_t bytes_read = read(client_fd, buffer, BUFFER_SIZE);
         if (bytes_read > 0) {
             std::cout << "Received: " << buffer << std::endl;
-            int x, y, index;
-            if (sscanf(buffer, "%d,%d,%d", &x, &y, &index) == 3) {
-                std::cout << "Parsed values - x: " << x << ", y: " << y << ", index: " << index << std::endl;
-                send_coordinates(x, y, index);
-            } else {
-                std::cout << "Invalid format received" << std::endl;
-            }
+            parse_and_send(buffer);
             memset(buffer, 0, BUFFER_SIZE);
         } else if (bytes_read == 0) {
             std::cout << "Client disconnected." << std::endl;
