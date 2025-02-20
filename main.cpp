@@ -16,9 +16,11 @@ EasyCAT myEasyCAT;
 int i = 0;
 
 void send_coordinates(int &x, int &y, int &index) {
+    std::cout << "Sending coordinates: x=" << x << ", y=" << y << ", index=" << index << std::endl;
     myEasyCAT.BufferIn.Cust.x = x;
     myEasyCAT.BufferIn.Cust.y = y;
     myEasyCAT.BufferIn.Cust.index = index;
+    std::cout << "Coordinates sent: x=" << x << ", y=" << y << ", index=" << index << std::endl;
 }
 
 void initEasyCat() {
@@ -30,10 +32,10 @@ void initEasyCat() {
 }
 
 void mainEasyCat() {
-    #ifdef DEBUG
-        std::cout << "Running Main Task: " << i << std::endl;
-    #endif
-    myEasyCAT.MainTask();
+    // #ifdef DEBUG
+    //     std::cout << "Running Main Task: " << i << std::endl;
+    // #endif
+    // myEasyCAT.MainTask();
 }
 
 int main() {
